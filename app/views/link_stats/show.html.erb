@@ -1,0 +1,8 @@
+<h1>Analytics</h1>
+<% @link_stats.uniq.each do |link_id| %>
+  <% link =  Link.find_by_id(link_id)%>
+  <h3><%= link.url %></h3>
+  <p><%= "https://short.com/#{link.short_url}" %></p>
+  <p> Total clicks: <%= link.no_of_clicks %></p>
+  <p> Top Countries: <%= LinkStat.where(link_id: link_id).pluck(:country).uniq.join(",") %></p>
+<% end %>
